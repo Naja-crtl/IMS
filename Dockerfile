@@ -8,7 +8,9 @@ WORKDIR /var/www/html
 COPY . .
 
 # Install PHP extensions and other dependencies
-RUN docker-php-ext-install pdo pdo_mysql gd
+RUN apt-get update && \
+    apt-get install -y libpng-dev && \
+    docker-php-ext-install pdo pdo_mysql gd
 
 # Expose the default HTTP port
 EXPOSE 80
